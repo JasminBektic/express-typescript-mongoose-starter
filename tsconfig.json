@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "pretty": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+    },
+    "include": [
+        "app/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

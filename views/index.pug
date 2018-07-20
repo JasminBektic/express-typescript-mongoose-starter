@@ -1,0 +1,11 @@
+extends layouts/app
+
+block content
+  h2.row.justify-content-center Dashboard
+  p.lead User logged in:
+  hr
+  .row
+    .col-sm-12
+      p id: #{user._id}
+      p Name: #{user.name}
+      p Email: #{user.email}
