@@ -18,4 +18,4 @@ class RedirectIfAuthenticated extends Middleware {
     }
 }
 
-export { RedirectIfAuthenticated };
+export default new RedirectIfAuthenticated;

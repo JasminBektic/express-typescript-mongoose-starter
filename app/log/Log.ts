@@ -46,7 +46,7 @@ class Log {
      * @param level 
      * @param message 
      */
-    public save(level, message) {
+    public save(level: string, message: string): void {
         this.logger.log(level, message);
     }
 }

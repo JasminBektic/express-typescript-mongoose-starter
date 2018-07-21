@@ -36,4 +36,4 @@ class RegisterController {
     }
 }
 
-export { RegisterController };
+export default new RegisterController;

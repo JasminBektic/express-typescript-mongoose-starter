@@ -18,4 +18,4 @@ class VerifyApiKey extends Middleware {
     }
 }
 
-export { VerifyApiKey };
+export default new VerifyApiKey;

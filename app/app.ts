@@ -2,8 +2,9 @@ import * as express from "express";
 import * as dotenv from "dotenv";
 import * as mongoose from "mongoose";
 import * as config from "./config/app";
-import * as route from "./config/route";
-import { PassportSession } from "./middleware/PassportSession";
+import * as Api from "../routes/api";
+import * as Web from "../routes/web";
+import PassportSession from "./middleware/PassportSession";
 import "./config/passport";
 
 
@@ -25,13 +26,13 @@ config.app(app);
 /**
  * Middleware
  */
-(new PassportSession).handle(app);
+PassportSession.handle(app);
 
 /**
  * Routes
  */
-route.web(app);
-route.api(app);
+Web.route(app);
+Api.route(app);
 
 
 export default app;

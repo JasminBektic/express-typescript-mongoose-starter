@@ -15,4 +15,4 @@ class PassportSession {
     }
 }
 
-export { PassportSession };
+export default new PassportSession;
