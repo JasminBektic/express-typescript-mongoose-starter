@@ -3,12 +3,14 @@ import * as session from "express-session";
 import * as bodyParser from "body-parser";
 import * as passport from "passport";
 import * as mongo from "connect-mongo";
+import * as compression from "compression";
 
 
 export let app = app => {
     const MongoStore = mongo(session);
 
     app.set("view engine", "pug");
+    app.use(compression());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(express.static('public'));

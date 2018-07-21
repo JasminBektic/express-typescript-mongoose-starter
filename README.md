@@ -21,7 +21,7 @@ mongod
 
 * Start project
 ```
-npm run watch
+npm start
 ```
 
 Get started by navigating to http://localhost:9000

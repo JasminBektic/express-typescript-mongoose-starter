@@ -2,12 +2,14 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es6",
+        "esModuleInterop": false,
         "noImplicitAny": false,
         "sourceMap": true,
         "experimentalDecorators": true,
         "pretty": true,
         "moduleResolution": "node",
         "baseUrl": ".",
+        "allowSyntheticDefaultImports": true
     },
     "include": [
         "app/**/*"
