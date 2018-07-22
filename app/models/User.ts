@@ -1,21 +1,32 @@
 import * as mongoose from "mongoose";
+import Model from "../models/Model";
+import UserSchema from "../schema/UserSchema";
 
 
-class UserSchema extends mongoose.Schema {
-    public constructor() {
-        super({
-                name: {
-                    type: String
-                    // required: [true, 'Name field is required.']
-                },
-                email: String,
-                password: String
-            }, 
-            { timestamps: true }
-        );
+class UserModel extends Model {
+    /**
+     * Model name
+     */
+    public static model = 'User';
+
+    /**
+     * Model instance
+     */
+    public getModel(): any {
+        return mongoose.model(UserModel.model);
+    }
+
+    /**
+     * Get users
+     */
+    public getUsers(): object {
+        let data = this.getModel().find()
+                                  .limit(20)
+                                  .select('name email password');
+        return data;
     }
 }
 
-const User = mongoose.model('User', new UserSchema);
+UserSchema.loadClass(UserModel);
 
-export { User };
+export default mongoose.model(UserModel.model, UserSchema);

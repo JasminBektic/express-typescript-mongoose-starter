@@ -1,4 +1,4 @@
-import { User } from "../models/User";
+import User from "../models/User";
 import { Request, Response } from "express";
 
 
@@ -9,12 +9,10 @@ class UserController {
      * @param res 
      */
     public get(req: Request, res: Response): any {
-        User.find()
-            .limit(20)
-            .select('name email password')
-            .then(user => {
-                return res.status(200).json(user);
-            });
+        User.schema.methods.getUsers()
+                           .then((users) => {
+                                return res.status(200).json(users);
+                            });
     }
 }
 
