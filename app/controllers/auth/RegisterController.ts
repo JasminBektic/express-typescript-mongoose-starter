@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import * as passport from "passport";
+import Mailer from "../../emailer/Mailer";
 
 
 class RegisterController {
@@ -28,8 +29,18 @@ class RegisterController {
             }
             user.save(err => {
                 if (err) {
-                    return next(err); 
+                    return next(err);
                 }
+
+                let data = {
+                    from: 'Admin',
+                    to: user.email,
+                    subject: 'Registration',
+                    html: '<b>Successfully registered!</b>'
+                };
+
+                Mailer.send(data);
+
                 res.redirect('/');
             });
         })(req, res, next);
