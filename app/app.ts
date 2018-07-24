@@ -15,7 +15,7 @@ dotenv.config({path: '.env'});
 /**
  * Database connection
  */
-mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, { useNewUrlParser: true });
 // (<any>mongoose).Promise = global.Promise;
 
 /**

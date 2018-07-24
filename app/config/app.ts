@@ -19,7 +19,7 @@ export let app = app => {
         saveUninitialized: true,
         secret: process.env.SESSION_KEY,
         store: new MongoStore({
-            url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`,
+            url: `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
             autoReconnect: true
         })
     }));
