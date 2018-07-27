@@ -1,9 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import * as passport from "passport";
 import Mailer from "../../emailer/Mailer";
+import RegisterValidator from "../../validators/RegisterValidator";
+import Controller from "../Controller";
 
 
-class RegisterController {
+class RegisterController extends Controller {
+
+    constructor() {
+        super(new RegisterValidator);
+    }
+
     /**
      * GET /register
      * @param req 
@@ -14,12 +21,19 @@ class RegisterController {
     }
 
     /**
-     * POST /register
+     * POST /register - Using as instance method so 'this' can be used properly
      * @param req 
      * @param res 
      * @param next 
      */
-    public register(req: Request, res: Response, next: NextFunction): any {
+    public register = (req: any, res: Response, next: NextFunction) => {
+        let errors = this.validator.validate(req);
+
+        if (errors) {
+            req.flash('errors', errors);
+            return res.redirect('/register');
+        }
+
         passport.authenticate('local-register', (err, user, info) => {
             if (err) { 
                 return next(err); 

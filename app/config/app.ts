@@ -4,6 +4,8 @@ import * as bodyParser from "body-parser";
 import * as passport from "passport";
 import * as mongo from "connect-mongo";
 import * as compression from "compression";
+import * as expressValidator from "express-validator";
+import * as flash from "express-flash";
 
 
 export let app = app => {
@@ -13,6 +15,7 @@ export let app = app => {
     app.use(compression());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(expressValidator());
     app.use(express.static('public'));
     app.use(session({
         resave: true,
@@ -25,4 +28,5 @@ export let app = app => {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(flash());
 };

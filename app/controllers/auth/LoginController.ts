@@ -1,8 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import * as passport from "passport";
+import LoginValidator from "../../validators/LoginValidator";
+import Controller from "../Controller";
 
 
-class LoginController {
+class LoginController extends Controller {
+
+    constructor() {
+        super(new LoginValidator);
+    }
+    
     /**
      * GET /login
      * @param req 
@@ -13,17 +20,25 @@ class LoginController {
     }
 
     /**
-     * POST /login
+     * POST /login - Using as instance method so 'this' can be used properly
      * @param req 
      * @param res 
      * @param next 
      */
-    public login(req: Request, res: Response, next: NextFunction): any {
+    public login = (req: any, res: Response, next: NextFunction) => {
+        let errors = this.validator.validate(req);
+
+        if (errors) {
+            req.flash('errors', errors);
+            return res.redirect('/login');
+        }
+
         passport.authenticate('local-login', (err, user, info) => {
             if (err) { 
                 return next(err); 
             }
             if (!user) {
+                req.flash('errors', {msg: info.message});
                 return res.redirect('/login');
             }
             req.login(user, (err) => {

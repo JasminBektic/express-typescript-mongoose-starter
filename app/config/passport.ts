@@ -32,7 +32,7 @@ passport.use('local-login',
                     bcrypt.compare(password, user.password)
                           .then((res) => {
                                 if (!res) {
-                                    return done(null, false, { message: `Oops! Wrong password.` });
+                                    return done(null, false, { message: `Wrong password.` });
                                 }
                                 return done(null, user);
                             });

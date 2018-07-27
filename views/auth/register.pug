@@ -5,6 +5,10 @@ block content
     h3 Register
   form.form-horizontal(id='signup-form', method='POST')
     //- input(type='hidden', name='_csrf', value=_csrf)
+    if messages.errors
+      .alert.alert-danger
+        for error in messages.errors
+          div= error.msg
     .form-group
       label.col-sm-3.control-label(for='email') Email
       .col-sm-7
@@ -16,7 +20,7 @@ block content
     .form-group
       label.col-sm-3.control-label(for='confirmPassword') Confirm Password
       .col-sm-7
-        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', required)
+        input.form-control(type='password', name='password_confirmation', id='password_confirmation', placeholder='Confirm Password', required)
     .form-group
       .col-sm-offset-3.col-sm-7
         button.btn.btn-success(type='submit')

@@ -9,7 +9,8 @@
         "pretty": true,
         "moduleResolution": "node",
         "baseUrl": ".",
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "alwaysStrict": false
     },
     "include": [
         "app/**/*"
