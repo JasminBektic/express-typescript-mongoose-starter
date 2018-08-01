@@ -4,7 +4,7 @@ block content
   .page-header
     h3 Login
   form.form-horizontal(method='POST')
-    input(type='', name='_csrf', value=_csrf)
+    input(type='hidden', name='_csrf', value=_csrf)
     if messages.errors
       .alert.alert-danger
         for error in messages.errors
@@ -21,6 +21,7 @@ block content
       .col-sm-offset-3.col-sm-7
         button.col-sm-3.btn.btn-primary(type='submit')
           | Login
-        //- a.btn.btn-link(href='/forgot') Forgot your password?
+        a.btn.btn-link(href='/register') Register
+        a.btn.btn-link(href='/forgot') Forgot your password?
     .form-group
       .col-sm-offset-3.col-sm-7
