@@ -26,7 +26,7 @@ class RegisterController extends Controller {
      * @param res 
      * @param next 
      */
-    public register = (req: any, res: Response, next: NextFunction) => {
+    public register = (req: any, res: Response, next: NextFunction): void => {
         let errors = this.validator.validate(req);
 
         if (errors) {
@@ -39,6 +39,7 @@ class RegisterController extends Controller {
                 return next(err); 
             }
             if (!user) {
+                req.flash('errors', {msg: info.message});
                 return res.redirect('/register');
             }
             user.save(err => {
@@ -53,9 +54,9 @@ class RegisterController extends Controller {
                     html: '<b>Successfully registered!</b>'
                 };
 
-                Mailer.send(data);
-
-                res.redirect('/');
+                Mailer.send(data).then((err) => {
+                    res.redirect('/');
+                });
             });
         })(req, res, next);
     }

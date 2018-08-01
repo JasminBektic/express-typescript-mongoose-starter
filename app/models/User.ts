@@ -12,12 +12,12 @@ class UserModel extends Model {
     /**
      * Model instance
      */
-    public getModel(): any {
+    public getModel(): mongoose.Model<mongoose.Document> {
         return mongoose.model(UserModel.model);
     }
 
     /**
-     * Get users
+     * Example method for API call
      */
     public getUsers(): object {
         let data = this.getModel().find()

@@ -1,0 +1,22 @@
+extends ../layouts/auth
+
+block content
+  .col-sm-8.col-sm-offset-2
+    h3 Forgot Password
+    form(method='POST')
+      input(type='hidden', name='_csrf', value=_csrf)
+      if messages.errors
+        .alert.alert-danger
+          for error in messages.errors
+            div= error.msg
+      if messages.info
+        .alert.alert-danger
+          for info in messages.info
+            div= info.msg
+      .form-group
+        label.control-label(for='email') Email
+        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+      .form-group
+        button.btn.btn-primary(type='submit')
+          i.fa.fa-key
+          | Reset Password

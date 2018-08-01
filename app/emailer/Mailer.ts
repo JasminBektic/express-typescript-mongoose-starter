@@ -6,12 +6,8 @@ class Mailer {
      * Send email
      * @param data 
      */
-    public send(data: object): void {
-        this.transporter().sendMail(data, (error, info) => {
-            if (error) {
-                return console.log(error);
-            }
-        });
+    public async send(data) {
+        await this.transporter().sendMail(data);
     }
 
     /**

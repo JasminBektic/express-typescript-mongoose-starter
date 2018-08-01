@@ -6,6 +6,7 @@ import * as mongo from "connect-mongo";
 import * as compression from "compression";
 import * as expressValidator from "express-validator";
 import * as flash from "express-flash";
+import * as lusca from "lusca";
 
 
 export let app = app => {
@@ -29,4 +30,6 @@ export let app = app => {
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());
+    app.use(lusca.xframe('SAMEORIGIN'));
+    app.use(lusca.xssProtection(true));
 };

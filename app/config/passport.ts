@@ -1,6 +1,6 @@
 import * as passport from "passport";
 import * as passportLocal from "passport-local";
-import * as bcrypt from "bcrypt";
+import Crypt from "../helpers/Crypt";
 import User from "../models/User";
 
 
@@ -29,13 +29,13 @@ passport.use('local-login',
                     if (!user) {
                         return done(null, false, { message: `Email ${email} not found.` });
                     }
-                    bcrypt.compare(password, user.password)
-                          .then((res) => {
+                    Crypt.compare(password, user.password)
+                         .then((res) => {
                                 if (!res) {
                                     return done(null, false, { message: `Wrong password.` });
                                 }
                                 return done(null, user);
-                            });
+                          });
                 });
 }));
 
@@ -52,14 +52,14 @@ passport.use('local-register',
                     if (user) {
                         return done(null, false, { message: 'That email is already taken.' });
                     } 
-                    bcrypt.hash(password, 8)
-                          .then((hash) => {
+                    Crypt.hash(password)
+                         .then((hash) => {
                                 let input = {
                                     email: email,
                                     password: hash
                                 }
                                 return done(null, new User(input));
-                            });
+                          });
                     
                 });
 }));

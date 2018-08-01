@@ -4,12 +4,10 @@ import { Schema } from "mongoose";
 class UserSchema extends Schema {
     public constructor() {
         super({
-                name: {
-                    type: String
-                    // required: [true, 'Name field is required.']
-                },
+                name: String,
                 email: String,
-                password: String
+                password: String,
+                token: String
             }, 
             { timestamps: true }
         );

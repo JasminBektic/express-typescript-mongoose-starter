@@ -4,7 +4,7 @@ block content
   .page-header
     h3 Login
   form.form-horizontal(method='POST')
-    //- input(type='', name='_csrf', value=_csrf)
+    input(type='', name='_csrf', value=_csrf)
     if messages.errors
       .alert.alert-danger
         for error in messages.errors
